@@ -1,0 +1,36 @@
+@model SharpQuiz.Domain.Entity.Clause
+
+@{
+    ViewData["Title"] = "Создать вопрос";
+}
+
+<div class="container mt-5">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        @* <div class="form-group"> *@
+        @*     <label>Курс:</label> *@
+        @*     @Html.DropDownList("BookId", @ViewBag.Books, "Выберите курс", new { @class = "form-control" }) *@
+        @* </div> *@
+        <div class="form-group">
+            <label>Раздел:</label>
+            @Html.DropDownList("ChapterId", @ViewBag.Chapters, "Выберите раздел", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Номер:</label>
+            <input type="text" class="form-control" asp-for="Number">
+        </div>
+        <div class="form-group">
+            <label>Вопрос:</label>
+            <input type="text" class="form-control" asp-for="Question">
+        </div>
+        <div class="form-group">
+            <label>Ответ:</label>
+            <textarea class="form-control" asp-for="Answer" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Пример кода:</label>
+            <textarea class="form-control" asp-for="FullAnswer" rows="10"></textarea>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary">Создать вопрос</button>
+    </form>
+</div>

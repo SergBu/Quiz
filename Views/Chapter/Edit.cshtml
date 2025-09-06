@@ -1,0 +1,25 @@
+@model SharpQuiz.Domain.Entity.Chapter
+
+@{
+    ViewData["Title"] = "Изменить раздел";
+}
+
+<div class="container mt-5">
+    <h2>Изменить раздел</h2>
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label>Книга:</label>
+            @Html.DropDownList("BookId", @ViewBag.Books, "Выберите книгу", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Номер:</label>
+            <input type="text" class="form-control" asp-for="Number">
+        </div>
+        <div class="form-group">
+            <label>Название:</label>
+            <input type="text"  class="form-control" asp-for="Name">
+        </div>
+        <button type="submit" class="btn btn-primary">Изменить раздел</button>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+@model SharpQuiz.Domain.Entity.Book
+
+<h2>Создать курс</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Number">Номер:</label>
+        <input type="text" class="form-control" id="Number" name="Number" required>
+    </div>
+    <div class="form-group">
+        <label for="Name">Название:</label>
+        <input type="text" class="form-control" id="Name" name="Name" required>
+    </div>
+    <div class="form-group">
+        <label for="Type">Category:</label>
+        <select class="form-control" id="Type" name="Type" required>
+            <option value="Develop">Разработка</option>
+            <option value="Devops">Администрирование</option>
+            <option value="Algorithm">Алгоритмы</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Создать курс</button>
+</form>

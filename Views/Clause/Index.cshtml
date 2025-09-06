@@ -1,0 +1,45 @@
+@model SharpQuiz.Models.PaginatedList<SharpQuiz.Domain.Entity.Clause>
+
+<h2>Вопрос</h2>
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("Create", "Clause")" class="btn btn-success">Добавить новый вопрос</a>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Вопрос</th>
+            <th>Ответ</th>
+            <th>Пример кода</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var clause in Model)
+        {
+            <tr>
+                <td>@clause.Number</td>
+                <td>@clause.Question</td>
+                <td>@Html.Raw(@clause.Answer)</td>
+                <td>@Html.Raw(@clause.FullAnswer)</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Clause", new { id = clause.Id })" class="btn btn-outline-primary">Редактировать вопрос</a>
+                    <a href="@Url.Action("Delete", "Clause", new { id = clause.Id })" class="btn btn-outline-danger">Удалить вопрос</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="Index" asp-route-page="@(Model.PageIndex - 1)" class="btn btn-outline-primary">Previous</a>
+    }
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="Index" asp-route-page="@(Model.PageIndex + 1)" class="btn btn-outline-primary">Next</a>
+    }
+</div>
