@@ -1,3 +1,7 @@
 ﻿bin
 obj
 SharpQuiz.sln.DotSettings.user
+appsettings.json
+appsettings.Development.json
+Program.cs
+.vs
