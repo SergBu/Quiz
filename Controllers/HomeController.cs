@@ -21,22 +21,12 @@ public class HomeController : Controller
     public IActionResult Index(int id)
     {
         var maxId = _context.Clauses.Max(c => c.Id);
-
-        // if (id < 1 || id > maxId)
-        // {
-        //     id = 1;
-        // }
-        // else
-        // {
-        //     id++;
-        // }
         var rnd = new Random();
         Clause? clause = null;
 
         while (clause == null)
         {
             var rndId  = rnd.Next(1, maxId + 1);  
-            // clause = _context.Clauses.FirstOrDefault(c => c.Id == id);
             clause = _context.Clauses.FirstOrDefault(c => c.Id == rndId);
         }
 
