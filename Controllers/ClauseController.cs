@@ -55,7 +55,7 @@ public class ClauseController : Controller
        
        var lastClause = await _context.Clauses
                                              .Include(x => x.Chapter)
-                                             .Where(p => lastChapter != null && p.Chapter.BookId == lastChapter.BookId)
+                                             .Where(p => lastChapter != null && p.Chapter!.BookId == lastChapter.BookId)
                                              .OrderByDescending(p => p.Id)
                                              .Take(1)
                                              .FirstOrDefaultAsync();
