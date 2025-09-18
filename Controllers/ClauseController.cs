@@ -20,10 +20,13 @@ public class ClauseController : Controller
     {
         _context = context;
     }
-    
-    public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
+
+    public async Task<IActionResult> Index(int page = 1, int pageSize = 10, string search = "*")
     {
         var clause = await _context.Clauses
+            .Where(x => (search.Equals("*") 
+            || x.Question.ToLower().Contains(search.ToLower()) 
+            || x.Answer.ToLower().Contains(search.ToLower())))
             .OrderByDescending(p => p.Id)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
@@ -38,6 +41,7 @@ public class ClauseController : Controller
         var totalClause = _context.Clauses.Count();
 
         var model = new PaginatedList<Clause>(clause, totalClause, page, pageSize);
+        ViewData["CurrentFilter"] = search;
 
         return View(model);
     }
@@ -51,7 +55,7 @@ public class ClauseController : Controller
        
        var lastClause = await _context.Clauses
                                              .Include(x => x.Chapter)
-                                             .Where(p => lastChapter != null && p.Chapter.BookId == lastChapter.BookId)
+                                             .Where(p => lastChapter != null && p.Chapter!.BookId == lastChapter.BookId)
                                              .OrderByDescending(p => p.Id)
                                              .Take(1)
                                              .FirstOrDefaultAsync();
