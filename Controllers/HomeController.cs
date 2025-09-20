@@ -18,7 +18,7 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public IActionResult Index(int id)
+    public IActionResult Index()
     {
         var maxId = _context.Clauses.Max(c => c.Id);
         var rnd = new Random();
